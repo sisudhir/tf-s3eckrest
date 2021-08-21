@@ -1,15 +1,15 @@
 
-variable "master_uri" {
+variable "masteruri" {
   type = string
   description = "Master URL"
 }
 
-variable "s3_bucket" {
+variable "s3bucket" {
   type = string
   description = "S3 bucket name"
 }
 
-variable "base_path" {
+variable "basepath" {
   type = string
   description = "Base Path"
 }
