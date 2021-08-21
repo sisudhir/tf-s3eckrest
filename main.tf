@@ -10,7 +10,7 @@ terraform {
 
 
 provider "restapi" {
-  uri                  = "http://192.168.1.93:31677/_snapshot"
+  uri                  = "var.masteruri"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
@@ -23,14 +23,14 @@ provider "restapi" {
 
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
-  path = "/eck-ss"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
+  path = "/var.basepath"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"var.s3bucket\", \"base_path\": \"var.basepath/\"}}"
 }
 
 resource "restapi_object" "take_snapshot" {
   depends_on = [restapi_object.create_repository]
   object_id = "s3snapshot"
-  path = "/eck-ss/snapshot-2"
+  path = "/var.basepath/snapshot-2"
   data = "{\"indices\": \"index_1,index_2\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
 }
 
