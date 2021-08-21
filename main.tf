@@ -10,7 +10,7 @@ terraform {
 
 
 provider "restapi" {
-  uri                  = "${master_uri}/_snapshot"
+  uri                  = "http://${master_uri}/_snapshot"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
