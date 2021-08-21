@@ -38,7 +38,7 @@ provider "restapi" {
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
   path = "/${base_path}"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${s3_bucket}"\", \"base_path\": \"${base_path}/\"}}"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${s3_bucket}\", \"base_path\": \""${base_path}"/\"}}"
 }
 
 resource "restapi_object" "take_snapshot" {
