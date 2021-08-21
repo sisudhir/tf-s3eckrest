@@ -8,9 +8,13 @@ terraform {
   }
 }
 
+variable "master_uri" {
+  type = string
+  description = "Master URL"
+}
 
 provider "restapi" {
-  uri                  = "http://192.168.1.93:31677/_snapshot"
+  uri                  = "${var.master_uri}/_snapshot"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
