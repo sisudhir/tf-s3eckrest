@@ -18,10 +18,10 @@ variable "s3_bucket_name" {
   description = "S3 bucket name"
 }
 
-variable "base_path" {
-  type = string
-  description = "Base Path"
-}
+#variable "base_path" {
+  #type = string
+  #description = "Base Path"
+#}
 
 provider "restapi" {
   uri                  = "${var.master_uri}/_snapshot"
