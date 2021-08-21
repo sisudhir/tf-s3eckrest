@@ -13,6 +13,16 @@ variable "master_uri" {
   description = "Master URL"
 }
 
+variable "s3_bucket_name" {
+  type = string
+  description = "S3 bucket name"
+}
+
+variable "base_path" {
+  type = string
+  description = "Base Path"
+}
+
 provider "restapi" {
   uri                  = "${var.master_uri}/_snapshot"
   debug                = true
@@ -27,14 +37,14 @@ provider "restapi" {
 
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
-  path = "/eck-ss"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
+  path = "/${var.base_path}"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${var.s3_bucket_name}\", \"base_path\": \"${var.base_path}/\"}}"
 }
 
 resource "restapi_object" "take_snapshot" {
   depends_on = [restapi_object.create_repository]
   object_id = "s3snapshot"
-  path = "/eck-ss/snapshot-1"
+  path = "/${var.base_path}/snapshot-1"
   data = "{\"indices\": \"index_1,index_2\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
 }
 
