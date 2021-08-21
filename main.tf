@@ -8,10 +8,10 @@ terraform {
   }
 }
 
-variable "master_uri" {
-  type = string
-  description = "Master URL"
-}
+#variable "master_uri" {
+  #type = string
+  #description = "Master URL"
+#}
 
 #variable "s3_bucket_name" {
   #type = string
@@ -24,7 +24,7 @@ variable "master_uri" {
 #}
 
 provider "restapi" {
-  uri                  = "${var.master_uri}/_snapshot"
+  uri                  = "http://192.168.1.93:31677/_snapshot"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
