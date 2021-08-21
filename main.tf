@@ -13,10 +13,10 @@ variable "master_uri" {
   description = "Master URL"
 }
 
-variable "s3_bucket_name" {
-  type = string
-  description = "S3 bucket name"
-}
+#variable "s3_bucket_name" {
+  #type = string
+  #description = "S3 bucket name"
+#}
 
 #variable "base_path" {
   #type = string
@@ -38,7 +38,7 @@ provider "restapi" {
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
   path = "/eck-ss"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${var.s3_bucket_name}\", \"base_path\": \"eck-ss/\"}}"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
 }
 
 resource "restapi_object" "take_snapshot" {
