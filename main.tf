@@ -10,7 +10,7 @@ terraform {
 
 
 provider "restapi" {
-  uri                  = "${master_uri}"
+  uri                  = "${"master_uri"}"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
