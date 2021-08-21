@@ -37,14 +37,14 @@ provider "restapi" {
 
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
-  path = "/${var.base_path}"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${var.s3_bucket_name}\", \"base_path\": \"${var.base_path}/\"}}"
+  path = "/eck-ss"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${var.s3_bucket_name}\", \"base_path\": \"eck-ss/\"}}"
 }
 
 resource "restapi_object" "take_snapshot" {
   depends_on = [restapi_object.create_repository]
   object_id = "s3snapshot"
-  path = "/${var.base_path}/snapshot-1"
+  path = "/eck-ss/snapshot-1"
   data = "{\"indices\": \"index_1,index_2\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
 }
 
