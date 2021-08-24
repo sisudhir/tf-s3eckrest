@@ -31,6 +31,6 @@ resource "restapi_object" "take_snapshot" {
   depends_on = [restapi_object.create_repository]
   object_id = "s3snapshot"
   path = "/eck-ss/snapshot_1"
-  data = "{\"indices\": \"index_1,index_2,index_3,index_4\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
+  data = "{\"indices\": \"index_1,index_2\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
 }
 
