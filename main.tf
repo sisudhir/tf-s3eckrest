@@ -10,7 +10,7 @@ terraform {
 
 
 provider "restapi" {
-  uri                  = "http://192.168.1.93:30959/_snapshot"
+  uri                  = "http://192.168.1.93:32560/_snapshot"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
