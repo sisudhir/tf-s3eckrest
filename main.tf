@@ -22,12 +22,14 @@ provider "restapi" {
 }
 
 resource "restapi_object" "create_repository" {
+  provider = restapi
   object_id = "s3repo"
   path = "/eck-ss"
   data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
 }
 
 provider "restapi" {
+  alias                = "west"
   uri                  = "http://192.168.1.93:32560/_slm"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
@@ -40,6 +42,7 @@ provider "restapi" {
 }
 
 resource "restapi_object" "create_policy" {
+    provider = restapi.west
   depends_on = [restapi_object.create_repository]
   object_id = "sspolicy"
   path = "/policy/daily-snapshots"
