@@ -42,7 +42,7 @@ provider "restapi" {
 }
 
 resource "restapi_object" "create_policy" {
-    provider = restapi.west
+  provider = restapi.west
   depends_on = [restapi_object.create_repository]
   object_id = "sspolicy"
   path = "/policy/daily-snapshots"
