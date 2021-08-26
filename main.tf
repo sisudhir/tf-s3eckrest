@@ -49,10 +49,11 @@ resource "restapi_object" "create_policy" {
   data = "\"name\":\"weather-data\",\"snapshotName\":\"weather-data-policy1\",\"schedule\":\"0 0 0 * * ?\",\"repository\":\"eck-ss\",\"config\":{\"indices\":[\"weather-data-2016\"]},\"retention\":{\"expireAfterUnit\":\"d\"},\"isManagedPolicy\":false}"
 }
 
-#resource "restapi_object" "take_snapshot" {
-  #depends_on = [restapi_object.create_repository]
-  #object_id = "s3snapshot"
-  #path = "/eck-ss/snapshot_1"
-  #data = "{\"indices\": \"index_1,index_2\",\"ignore_unavailable\": true,\"include_global_state\": false,\"metadata\": {\"taken_by\": \"elastic\",\"taken_because\": \"backup before upgrading\"}}"
-#}
 
+resource "restapi_object" "exec_policy" {
+  provider = restapi.west
+  depends_on = [restapi_object.create_policy]
+  object_id = "sspolicyexec"
+  path = "/policy/daily-snapshots/_execute"
+  data = ""
+}
