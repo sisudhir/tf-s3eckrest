@@ -10,7 +10,7 @@ terraform {
 
 
 provider "restapi" {
-  uri                  = "http://192.168.1.93:32560/"
+  uri                  = "http://192.168.1.93:32560/_snapshot/eck-ss"
   debug                = true
   headers              = {"Content-Type" = "application/json"}
   write_returns_object = true
@@ -23,7 +23,7 @@ provider "restapi" {
 
 resource "restapi_object" "create_repository" {
   object_id = "s3repo"
-  path = "_snapshot/eck-ss"
+  path = ""
   data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
 }
 
