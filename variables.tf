@@ -1,4 +1,5 @@
-variable "snapshot_url" {
+variable "eckmstr_uri" {
   type = string
-  description = "API Key Id from Intersight"
+  description = "Elastic master ip and port"
+  default = "192.168.1.93:32560"
 }
