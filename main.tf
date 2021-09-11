@@ -24,6 +24,6 @@ provider "restapi" {
 resource "restapi_object" "create_repository" {
   provider = restapi
   object_id = "s3repo"
-  path = "/eck-ss"
-  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"eck-bucket\", \"base_path\": \"eck-ss/\"}}"
+  path = "/${var.base_path"
+  data = "{\"type\": \"s3\", \"settings\": {\"client\": \"default\", \"bucket\": \"${var.bucket_name}\", \"base_path\": \"${var.base_path}/\"}}"
 }
